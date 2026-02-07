@@ -1,12 +1,27 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Header from "./Header";
+import { formValidate } from "../utils/FormValidate";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
+  const[message,setMessage]=useState();
+  const email = useRef();
+  const password = useRef();
 
   const handleSignIn = () => {
     setIsSignIn(!isSignIn);
   };
+
+  const handleForm = ()=>{
+    let currentEmail = email.current.value;
+    let currentPassword = password.current.value;
+    console.log(currentPassword)
+    let errorMessage= formValidate(currentEmail,currentPassword);
+    console.log(errorMessage)
+    setMessage(errorMessage);
+  }
+
+  
 
   return (
     <div>
@@ -18,7 +33,7 @@ const Login = () => {
         />
       </div>
 
-      <form className="absolute text-white  bg-black  p-16 w-3/12 my-36 mx-auto left-0 right-0 bg-opacity-80 ">
+      <form onSubmit={e=>e.preventDefault()} className="absolute text-white  bg-black  p-16 w-3/12 my-36 mx-auto left-0 right-0 bg-opacity-80 ">
         <h1 className="font-bold  text-3xl py-4">
           {isSignIn ? "Sign In" : "Sign Up"}
         </h1>
@@ -29,19 +44,22 @@ const Login = () => {
             placeholder="Full Name "
           />
         )}
-        <input
+        <input ref={email}
           className="p-4 my-4 w-full bg-gray-800 rounded-md"
-          type="email"
+          type="text"
           placeholder="Email Address "
         />
-        <input
+        <input ref={password}
           className="p-4 my-4 w-full bg-gray-800  rounded-md"
           type="password"
           placeholder="Password"
         />
-        <button className="bg-red-700 w-full p-4 my-4 rounded-lg" type="submit">
+
+        <p className="py-4 text-red-600 font-bold">{message}</p>
+        <button onClick={handleForm}  className="bg-red-700 w-full p-4 my-4 rounded-lg" type="submit">
           {isSignIn ? "Sign In" : "Sign Up"}
         </button>
+
         <p className="py-4 cursor-pointer" onClick={handleSignIn}>
           {isSignIn
             ? "New to Netflix? Sign Up Now"
