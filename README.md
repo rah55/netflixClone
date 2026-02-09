@@ -8,5 +8,8 @@
 - use react router dom for the routing
 
 
-add validation to the email and password field using useRef
+-add validation to the email and password field using useRef
+-firebase email and password based authentication done 
+
+
 
