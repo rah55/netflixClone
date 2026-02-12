@@ -4,14 +4,22 @@ import { formValidate } from "../utils/FormValidate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
-import {auth} from "../utils/firebase"
+import { auth } from "../utils/firebase";
+
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
+import { BG_IMG } from "../utils/constants";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const [isSignIn, setIsSignIn] = useState(true);
   const [message, setMessage] = useState(null);
-  const email = useRef();
-  const password = useRef();
+
+  const email = useRef(null);
+  const password = useRef(null);
+  const fullName = useRef(null);
 
   const handleSignIn = () => {
     setIsSignIn(!isSignIn);
@@ -20,18 +28,40 @@ const Login = () => {
   const handleForm = () => {
     let currentEmail = email.current.value;
     let currentPassword = password.current.value;
+
     let errorMessage = formValidate(currentEmail, currentPassword);
-    if (message) return;
+    setMessage(errorMessage);
+    if (errorMessage) return;
 
     if (!isSignIn) {
       //signup logic
 
       createUserWithEmailAndPassword(auth, currentEmail, currentPassword)
         .then((userCredential) => {
-          // Signed up
           const user = userCredential.user;
           console.log(user);
-          // ...
+          updateProfile(user, {
+            displayName: fullName.current.value,
+            // photoURL: "https://example.com/jane-q-user/profile.jpg",
+          })
+            .then(() => {
+              // Profile updated!
+              const { displayName, email, uid } = auth.currentUser;
+              dispatch(
+                addUser({
+                  displayName: displayName,
+                  email: email,
+                  uid: uid,
+                }),
+              );
+            })
+            .catch((error) => {
+              // An error occurred
+              // ...
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              setMessage(errorCode + " " + errorMessage);
+            });
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -40,18 +70,16 @@ const Login = () => {
           // ..
         });
     } else {
-      
       signInWithEmailAndPassword(auth, currentEmail, currentPassword)
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
-          // ...
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-           setMessage(errorCode + " " + errorMessage);
+          setMessage(errorCode + " " + errorMessage);
         });
     }
   };
@@ -61,7 +89,7 @@ const Login = () => {
       <Header />
       <div className="absolute">
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/e49aba81-ee7c-4f19-baef-7c54bbab003e/web/IN-en-20260202-TRIFECTA-perspective_04f5de39-b518-493c-9a8d-6aef11af0457_medium.jpg"
+          src={BG_IMG}
           alt=""
         />
       </div>
@@ -75,6 +103,7 @@ const Login = () => {
         </h1>
         {!isSignIn && (
           <input
+            ref={fullName}
             className="p-4 my-4 w-full bg-gray-800 rounded-md"
             type="text"
             placeholder="Full Name "
