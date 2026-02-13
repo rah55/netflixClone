@@ -25,7 +25,7 @@ const Header = () => {
   };
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+   const unsubscribed= onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, email, password, displayName } = user;
 
@@ -47,6 +47,10 @@ const Header = () => {
         // ...
       }
     });
+
+    return ()=>{
+      unsubscribed()
+    }
   }, []);
 
   return (
