@@ -19,4 +19,8 @@
     -main container
     -background video
     -video description and title
-    -create custom hooks for the now playing movie 
+    -create custom hooks for the now playing movie  and add movie trailer
+    -adjust the trailer in the background with the opacity 
+    -create custom hooks for the upcoming movie ,top rated movies, popular movies.
+    -show movie list with the movie card component .
+    

@@ -11,7 +11,8 @@ function VideoContainer({ movieId }) {
   return (
     <div className=" w-[100%] ">
       <iframe
-        className="w-[100%] aspect-video bg-opacity-80 object-cover"
+      title="Now playing movie trailer"
+        className="w-[100%] aspect-video  "
         src={
           "https://www.youtube.com/embed/" +
           trailerVideo?.key +

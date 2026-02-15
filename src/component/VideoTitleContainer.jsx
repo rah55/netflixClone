@@ -4,7 +4,7 @@ function VideoTitleContainer({title,desc}) {
   
   
   return (
-    <div className='pt-[20%] px-10 absolute text-white bg-gradient-to-r from-black  aspect-video'>
+    <div className='pt-[20%] px-10 absolute text-white bg-gradient-to-r from-black w-[100%] aspect-video'>
       <h1 className='font-bold text-5xl '>{title}</h1>
       <p className='w-1/3 text-lg py-5'>{desc}</p>
       <div className='my-5'>
