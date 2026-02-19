@@ -1,17 +1,21 @@
 import React ,{ useEffect } from "react";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signOut } from "firebase/auth";
 import { useSelector } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "../utils/userSlice";
 import { NETFLIX_LOGO_URL } from "../utils/constants";
+import { toggleGptSearch } from "../utils/gptSlice";
+import { clearMovieList } from "../utils/movieSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
+  const gpt = useSelector((store) => store.gpt);
+  const location = useLocation();
   const handleSignout = () => {
     signOut(auth)
       .then(() => {
@@ -23,6 +27,12 @@ const Header = () => {
         // An error happened.n
       });
   };
+
+  const handleSearch = ()=>{
+    dispatch(toggleGptSearch(!gpt.gptOption));
+    dispatch(clearMovieList());
+    
+  }
 
   useEffect(() => {
    const unsubscribed= onAuthStateChanged(auth, (user) => {
@@ -38,7 +48,9 @@ const Header = () => {
           }),
         );
         // ...
+        if (location.pathname === "/") {
         navigate("/browse");
+      }
       } else {
         dispatch(removeUser());
 
@@ -51,7 +63,7 @@ const Header = () => {
     return ()=>{
       unsubscribed()
     }
-  }, []);
+  }, [location.pathname]);
 
   return (
     <div className=" flex justify-between items-center absolute px-5 py-2 bg-gradient-to-b from-black z-10 w-full">
@@ -63,6 +75,13 @@ const Header = () => {
       {user && (
         <div className="flex justify-between items-center ">
         <p className="mx-2 border-b-2 font-bold text-red-700"> Welcome ! {user.displayName}</p>
+        <button
+          onClick={handleSearch}
+          className="bg-purple-700 rounded h-10 px-2 mr-1 text-white"
+        >
+          {gpt?.showGptOption ? "Homepage": " Search"}
+         
+        </button>
         <button
           onClick={handleSignout}
           className="bg-red-700 rounded h-10 px-2 text-white"

@@ -1,14 +1,21 @@
-import React from 'react'
-import { IMG_CDN_URL } from '../utils/constants'
+import React from "react";
+import { IMG_CDN_URL } from "../utils/constants";
+import { Link } from "react-router-dom";
 
-function MovieCard({title,poster}) {
+function MovieCard({ title, poster, id }) {
+  console.log("Movie ID:", id);
+
   return (
-    <div className='w-48 '>
-        
-        <img src={IMG_CDN_URL+poster} alt={title} />
-      
+    <div className="w-48 hover:scale-105 transition duration-300">
+      <Link to={`/movie/${id}`}>
+        <img
+          className="rounded-lg cursor-pointer"
+          src={IMG_CDN_URL + poster}
+          alt={title}
+        />
+      </Link>
     </div>
-  )
+  );
 }
 
-export default MovieCard
+export default MovieCard;

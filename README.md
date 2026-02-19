@@ -23,4 +23,6 @@
     -adjust the trailer in the background with the opacity 
     -create custom hooks for the upcoming movie ,top rated movies, popular movies.
     -show movie list with the movie card component .
+    -create search movie functionality .
+    -create dynamic route for each movie .
     

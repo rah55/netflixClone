@@ -5,6 +5,7 @@ import "./index.css";
 import Browse from "./component/Browse";
 import { Provider } from "react-redux";
 import store from "./utils/store";
+import AllMovieDetails from "./component/AllMovieDetails";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Body />}></Route>
           <Route path="/browse" element={<Browse />}></Route>
+          <Route path="/movie/:id" element={<AllMovieDetails />} />
           <Route path="/error" element={<Error />}></Route>
         </Routes>
       </Provider>

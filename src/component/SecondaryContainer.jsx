@@ -7,7 +7,7 @@ function SecondaryContainer() {
 
   return (
     <div className="bg-black  ">
-      <div className="-mt-64 z-10 relative ">
+      <div className="-mt-64 relative z-20 ">
         <MovieList title={"Now Playing"} movies={movies?.nowPlayingMovies} />
         <MovieList title={"Upcoming"} movies={movies?.upcoming} />
 
@@ -21,14 +21,3 @@ function SecondaryContainer() {
 
 export default SecondaryContainer;
 
-{
-  /*
-  secondary container
-    movie list container  
-      h1
-      movie card
-  
-  
-  
-  */
-}
