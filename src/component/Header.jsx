@@ -66,25 +66,25 @@ const Header = () => {
   }, [location.pathname]);
 
   return (
-    <div className=" flex justify-between items-center absolute px-5 py-2 bg-gradient-to-b from-black z-10 w-full">
+    <div className="flex flex-col  md:flex-row justify-between absolute px-5 py-2 bg-gradient-to-b from-black z-10 w-full">
       <img
-        className="w-44 "
+        className=" w-44 mx-auto md:mx-0"
         src={NETFLIX_LOGO_URL}
         alt="netflix logo "
       />
       {user && (
-        <div className="flex justify-between items-center ">
-        <p className="mx-2 border-b-2 font-bold text-red-700"> Welcome ! {user.displayName}</p>
+        <div className="flex justify-center md:justify-between items-center ">
+        <p className="mx-2 text-xs md:text-lg border-b-2 font-bold text-red-700"> Welcome ! {user.displayName}</p>
         <button
           onClick={handleSearch}
-          className="bg-purple-700 rounded h-10 px-2 mr-1 text-white"
+          className="bg-purple-700 rounded h-8 md:h-10 px-2 mr-1 text-white"
         >
           {gpt?.showGptOption ? "Homepage": " Search"}
          
         </button>
         <button
           onClick={handleSignout}
-          className="bg-red-700 rounded h-10 px-2 text-white"
+          className="bg-red-700 rounded h-8 md:h-10 px-2 text-white"
         >
           Sign Out
         </button>

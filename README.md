@@ -25,4 +25,6 @@
     -show movie list with the movie card component .
     -create search movie functionality .
     -create dynamic route for each movie .
+    -make the website fully responsive
+    
     

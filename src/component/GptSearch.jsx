@@ -6,11 +6,15 @@ import GptMovieSuggestion from "./GptMovieSuggestion";
 function GptSearch() {
   return (
     <>
-    <div className="absolute -z-10">
-      <img src={BG_IMG} alt="" />
+    <div className="  fixed -z-10 ">
+      <img className="h-screen w-screen object-cover  " src={BG_IMG} alt="" />
     </div>
-   <GptSearchBar/>
+    <div>
+       <GptSearchBar/>
    <GptMovieSuggestion/>
+
+    </div>
+  
     </>
    
   );

@@ -6,7 +6,7 @@ function MovieCard({ title, poster, id }) {
   console.log("Movie ID:", id);
 
   return (
-    <div className="w-48 hover:scale-105 transition duration-300">
+    <div className=" w-20 md:w-48 hover:scale-105 transition duration-300">
       <Link to={`/movie/${id}`}>
         <img
           className="rounded-lg cursor-pointer"

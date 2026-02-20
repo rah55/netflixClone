@@ -8,7 +8,7 @@ function GptMovieSuggestion() {
   if(!moviesList) return null;
   
   return moviesList.length!==0 && (
-    <div className='bg-black z-20  text-white mx-auto w-1/2 my-5 p-20 bg-opacity-70'>
+    <div className='bg-black z-20 w-[80%] text-white mx-auto md:w-1/2 my-5 p-5 md:p-20 bg-opacity-90'>
      <h1 className='text-xl font-bold pb-6'>Search Result</h1>
      <div className='flex flex-wrap gap-3 shadow-white '>
       {moviesList?.map((movie)=><MovieCard  key={movie?.id} title={movie?.title} poster={movie?.poster_path}/>)}
