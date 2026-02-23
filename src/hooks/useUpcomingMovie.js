@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { upcomingMovieList } from "../utils/movieSlice";
-import { options } from "../utils/constants";
+import { options, TMDB_API_URL } from "../utils/constants";
+import { useNavigate } from "react-router-dom";
 
 const useUpcomingMovie = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const upcomingMovie = useSelector((store) => store?.movies?.upcomingMovie);
 
   useEffect(() => {
@@ -12,13 +14,14 @@ const useUpcomingMovie = () => {
   }, []);
 
   const getUpcomingMovies = async () => {
-    const data = await fetch(
-      "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=2 ",
-      options,
-    );
-    const json = await data.json();
-    console.log(json.results);
-    dispatch(upcomingMovieList(json?.results));
+    try {
+      const data = await fetch(TMDB_API_URL + "upcoming?&page=2 ", options);
+      const json = await data.json();
+
+      dispatch(upcomingMovieList(json?.results));
+    } catch (error) {
+      navigate("/error");
+    }
   };
 };
 export default useUpcomingMovie;

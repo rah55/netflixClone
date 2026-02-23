@@ -3,14 +3,15 @@ import MovieDetailCard from "./MovieDetailCard";
 
 function MoreDetailsCard({ details }) {
   if (!details) return;
-  console.log(details?.data2);
+  
   const {  genres, spoken_languages } = details?.data1;
   const allGenres = genres.map((genre) => genre.name).join(",");
   const { cast } = details?.data2;
-  const castArray = cast.map((cs) => cs?.name);
+  const castArray = cast.map((cs) => cs?.name).slice(0,11);
   const languages = spoken_languages
     .map((language) => language?.name)
-    .join(",");
+    
+    console.log(languages)
 
     
 
@@ -27,12 +28,12 @@ function MoreDetailsCard({ details }) {
   const card2 = [
     {
       heading: "Audio",
-      paragraph:
-        languages + "- Audio Description ," + languages + "[Original]",
+      paragraph: languages.length>=1? (languages + " - Audio Description , " + languages[0] + "[Original]"):( languages + " - Audio Description , " + languages + "[Original]")
+       
     },
     {
       heading: "Subtitles",
-      paragraph: languages
+      paragraph: languages.length>=1? languages?.join(","):languages
     },
   ];
   const card3 = [

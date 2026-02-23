@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 
 import { useDispatch } from "react-redux";
 import { allMovieList } from "../utils/movieSlice";
-import { options } from "../utils/constants";
+import { options, SEARCH_API_URL } from "../utils/constants";
 
 function GptSearchBar() {
   const searchInput = useRef();
@@ -10,7 +10,7 @@ function GptSearchBar() {
 
   const searchMovies = async (name) => {
     const data = await fetch(
-      "https://api.themoviedb.org/3/search/movie?query=" + name ,
+      SEARCH_API_URL + name ,
       options,
     );
     const json = await data?.json();

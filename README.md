@@ -27,7 +27,8 @@
     -create dynamic route for each movie .
     -make the website fully responsive.
 
-    create all movie details page when click on the movie ,all details of the movie will come
+- create all movie details page 
+    when click on the movie ,all details of the movie will come
     make it responsive too
     
     

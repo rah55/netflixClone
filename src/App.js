@@ -15,7 +15,7 @@ function App() {
           <Route path="/" element={<Body />}></Route>
           <Route path="/browse" element={<Browse />}></Route>
           <Route path="/movie/:id" element={<AllMovieDetails />} />
-          <Route path="/error" element={<Error />}></Route>
+           <Route path="*" element={<Error />} />
         </Routes>
       </Provider>
     </>

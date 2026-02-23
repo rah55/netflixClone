@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { popularMovieList } from "../utils/movieSlice";
-import { options } from "../utils/constants";
+import { options, TMDB_API_URL } from "../utils/constants";
+import { useNavigate } from "react-router-dom";
 
 const usePopularMovie = () => {
   const dispatch = useDispatch();
+  const navigate= useNavigate();
   const popularMovie = useSelector((store) => store?.movies?.popularMovie);
 
   useEffect(() => {
@@ -12,13 +14,19 @@ const usePopularMovie = () => {
   }, []);
 
   const getPopularMovies = async () => {
-    const data = await fetch(
-      "https://api.themoviedb.org/3/movie/popular",
+
+    try {
+      const data = await fetch(
+      TMDB_API_URL+"popular",
       options,
     );
     const json = await data.json();
-    console.log(json.results);
     dispatch(popularMovieList(json?.results));
+      
+    } catch (error) {
+      navigate("/error");
+    }
+    
   };
 };
 export default usePopularMovie;

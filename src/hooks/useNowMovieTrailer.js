@@ -1,31 +1,30 @@
-import { useDispatch, useSelector} from "react-redux";
-import { addTrailer } from "../utils/movieSlice";
-import { useEffect } from "react";
-import { options } from "../utils/constants";
+import { useEffect, useState } from "react";
+import { options, TMDB_API_URL } from "../utils/constants";
+import { useNavigate } from "react-router-dom";
 
-const useNowMovieTrailer = (movieId)=>{
-     
-  const dispatch = useDispatch();
-  const nowMovieTrailer = useSelector(store=>store?.movies?.movieTrailer);
+const useNowMovieTrailer = (movieId) => {
+  const [trailerVideo, setTrailerVideo] = useState(null);
+  const navigate= useNavigate();
 
   useEffect(() => {
-    !nowMovieTrailer && getTrailer();
-  }, []);
-  const getTrailer = async () => {
-    const data = await fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
-      options,
-    );
-    const json = await data?.json();
-    const filterData = json?.results?.filter(
-      (result) => result?.type === "Trailer",
-    );
+    const fetchTrailer = async () => {
+      try {
+        const data = await fetch(TMDB_API_URL + `${movieId}/videos`, options);
+        const json = await data.json();
 
-    const trailer = filterData?.length ? filterData[0] : json?.results[0];
+        const trailer = json.results.filter(
+          (video) => video.type === "Trailer",
+        );
 
-    dispatch(addTrailer(trailer));
-  };
-  
-    
-}
+        setTrailerVideo(trailer[0]);
+      } catch (error) {
+        navigate("/error");
+      }
+    };
+
+    if (movieId) fetchTrailer();
+  }, [movieId]);
+
+  return trailerVideo;
+};
 export default useNowMovieTrailer;

@@ -2,11 +2,13 @@ import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { addNowPlayingMovies } from "../utils/movieSlice";
-import { options } from "../utils/constants";
+import { options, TMDB_API_URL } from "../utils/constants";
+import { useNavigate } from "react-router-dom";
 
 
 const useNowPlaying = () => {
   const dispatch = useDispatch();
+  const navigate= useNavigate();
   const nowPlayingMovie = useSelector(store=>store?.movies?.nowPlayingMovie);
 
   useEffect(() => {
@@ -14,9 +16,17 @@ const useNowPlaying = () => {
   }, []);
 
   const getNowPlayingMovies = async () => {
-    const data = await fetch('https://api.themoviedb.org/3/movie/now_playing?page=2',options );
+    try {
+
+      
+    const data = await fetch(TMDB_API_URL+'now_playing?page=2',options );
     const json = await data.json();
     dispatch(addNowPlayingMovies(json?.results));
+      
+    } catch (error) {
+navigate("/error");
+      
+    }
   };
 };
 export default useNowPlaying;

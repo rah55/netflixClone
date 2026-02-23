@@ -9,6 +9,8 @@ export const options = {
     Authorization: 'Bearer '+process.env.REACT_APP_TMDB_TOKEN
   }
 };
+export const SEARCH_API_URL="https://api.themoviedb.org/3/search/movie?query=";
+export const TMDB_API_URL="https://api.themoviedb.org/3/movie/";
 
 export const IMG_CDN_URL ="https://image.tmdb.org/t/p/w154";
 

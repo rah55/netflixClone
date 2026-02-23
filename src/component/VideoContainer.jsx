@@ -1,12 +1,10 @@
 import React from "react";
-
-import { useSelector } from "react-redux";
-
 import useNowMovieTrailer from "../hooks/useNowMovieTrailer";
 
 function VideoContainer({ movieId }) {
-  useNowMovieTrailer(movieId);
-  const trailerVideo = useSelector((store) => store?.movies?.movieTrailer);
+ const trailerVideo= useNowMovieTrailer(movieId);
+  
+  if(!trailerVideo) return;
 
   return (
     <div className=" w-[100%] ">

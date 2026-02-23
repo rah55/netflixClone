@@ -2,23 +2,31 @@ import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { topRatedMovieList } from "../utils/movieSlice";
-import { options } from "../utils/constants";
+import { options, TMDB_API_URL } from "../utils/constants";
+import { useNavigate } from "react-router-dom";
 
 const useTopRatedMovie = () => {
   const dispatch = useDispatch();
-  const topRateMovie = useSelector((store) => store?.movies?.topRateMovie);
+  const navigate = useNavigate();
+    const topRateMovie = useSelector((store) => store?.movies?.topRateMovie);
 
   useEffect(() => {
     !topRateMovie && getTopRatedMovies();
   }, []);
 
   const getTopRatedMovies = async () => {
-    const data = await fetch(
-      "https://api.themoviedb.org/3/movie/top_rated",
+
+    try{
+const data = await fetch(
+      TMDB_API_URL+"top_rated",
       options,
     );
     const json = await data.json();
     dispatch(topRatedMovieList(json?.results));
+    }catch(error){
+      navigate("/error");
+    }
+    
   };
 };
 export default useTopRatedMovie;

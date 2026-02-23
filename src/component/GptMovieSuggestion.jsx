@@ -15,11 +15,14 @@ function GptMovieSuggestion() {
         <div className="flex flex-wrap gap-3 shadow-white ">
           {moviesList?.map((movie) => (
            
-              <MovieCard
-                key={movie?.id}
-                title={movie?.title}
-                poster={movie?.poster_path}
-              />
+            <MovieCard
+              key={movie?.id}
+              id={movie?.id}
+              title={movie?.title}
+              poster={movie?.poster_path}
+            />
+            
+           
             
           ))}
         </div>
