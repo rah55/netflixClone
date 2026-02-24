@@ -17,7 +17,7 @@ function GptSearchBar() {
     const filterMovies = json?.results.filter(
       (movie) => movie?.poster_path !== null,
     );
-    console.log(filterMovies)
+    
     dispatch(allMovieList(filterMovies));
   };
 

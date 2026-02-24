@@ -13,7 +13,7 @@ function MovieCard({ title, poster, id }) {
           src={IMG_CDN_URL + poster}
           alt={title}
         />
-        <p>{title}</p>
+        <p className="px-2">{title}</p>
       </Link>
     </div>
   );

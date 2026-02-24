@@ -23,7 +23,7 @@ const Header = () => {
       })
       .catch((error) => {
         navigate("/error");
-        console.log(error);
+        
         // An error happened.n
       });
   };

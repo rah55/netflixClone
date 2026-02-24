@@ -3,7 +3,7 @@ import React from "react";
 function MovieDetails({ details }) {
   if (!details) return;
   const { title, release_date, overview, genres } = details?.data1;
-  console.log(genres);
+  
   const { cast } = details?.data2;
   const castArray = cast.map((cs) => cs.name);
   const starcast = castArray.slice(0, 3);

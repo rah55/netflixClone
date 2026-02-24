@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, useParams } from "react-router-dom";
-import { NETFLIX_LOGO_URL, options } from "../utils/constants";
-import { useDispatch, useSelector } from "react-redux";
-import { fullMovieData } from "../utils/movieSlice";
+import { NETFLIX_LOGO_URL } from "../utils/constants";
+import {  useSelector } from "react-redux";
+
 import VideoContainer from "./VideoContainer";
 import MovieDetails from "./MovieDetails";
 import MoreDetailsCard from "./MoreDetailsCard";
@@ -14,7 +14,7 @@ import Footer from "./Footer";
 function AllMovieDetails() {
   const { id } = useParams();
   const movies = useSelector((store) => store?.movies);
-  console.log(movies);
+  
   useAllMovieDetails(id);
 
   return (
@@ -33,7 +33,7 @@ function AllMovieDetails() {
         </div>
       </div>
 
-      <div className="w-[80%] mx-auto -mt-5 ">
+      <div className="w-[80%] mx-auto -mt-2.5 sm:-mt-5  ">
         <VideoContainer movieId={id} />
         <MovieDetails details={movies?.movieData} />
         <MoreDetailsCard details={movies?.movieData} />

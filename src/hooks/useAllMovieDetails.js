@@ -21,7 +21,7 @@ const useAllMovieDetails = (id) => {
 
       dispatch(fullMovieData({ data1, data2 }));
     } catch (error) {
-      console.log(error);
+      
     }
   };
 

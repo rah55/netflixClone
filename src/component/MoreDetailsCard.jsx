@@ -1,7 +1,6 @@
 import React from "react";
 import MovieDetailCard from "./MovieDetailCard";
-import Plans from "./Plans";
-import MovieList from "./MovieList";
+
 
 function MoreDetailsCard({ details }) {
   if (!details) return;
@@ -13,7 +12,6 @@ function MoreDetailsCard({ details }) {
   const languages = spoken_languages
     .map((language) => language?.name)
     
-    console.log(languages)
 
     
 
