@@ -1,5 +1,7 @@
 import React from "react";
 import MovieDetailCard from "./MovieDetailCard";
+import Plans from "./Plans";
+import MovieList from "./MovieList";
 
 function MoreDetailsCard({ details }) {
   if (!details) return;
@@ -28,7 +30,7 @@ function MoreDetailsCard({ details }) {
   const card2 = [
     {
       heading: "Audio",
-      paragraph: languages.length>=1? (languages + " - Audio Description , " + languages[0] + "[Original]"):( languages + " - Audio Description , " + languages + "[Original]")
+      paragraph: languages?.length>=1 && (languages + " - Audio Description  ")
        
     },
     {
@@ -51,6 +53,8 @@ function MoreDetailsCard({ details }) {
         <MovieDetailCard card={card2} />
         <MovieDetailCard card={card3} />
       </div>
+     
+     
     </div>
   );
 }

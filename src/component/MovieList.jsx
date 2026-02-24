@@ -12,9 +12,9 @@ function MovieList({ title,movies }) {
          <div className=" flex gap-3 md:gap-0">
         {movies?.map((movie) => (
           <div  key={movie?.id}>
-            <Link to={`/movie/${movie?.id}`}>
+            
             <MovieCard  title={movie?.title} poster={movie?.poster_path} id={movie?.id} />
-            </Link>
+            
           </div>
         ))}
       </div>

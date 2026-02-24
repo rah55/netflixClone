@@ -3,6 +3,7 @@ import React from "react";
 function MovieDetails({ details }) {
   if (!details) return;
   const { title, release_date, overview, genres } = details?.data1;
+  console.log(genres);
   const { cast } = details?.data2;
   const castArray = cast.map((cs) => cs.name);
   const starcast = castArray.slice(0, 3);
@@ -13,7 +14,7 @@ function MovieDetails({ details }) {
       <div>
         <ul className="flex font-bold gap-2 py-2 ">
           <li>{release_date.split("-")[0]}</li>
-          <li>⚫{genres[0].name}</li>
+          <li>⚫{genres[0]?.name}</li>
         </ul>
       </div>
       <div className="grid  md:grid-cols-12 md:items-center">

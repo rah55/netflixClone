@@ -7,7 +7,7 @@ function VideoContainer({ movieId }) {
   if(!trailerVideo) return;
 
   return (
-    <div className=" w-[100%] ">
+    <div className=" w-[100%]  ">
       <iframe
       title="Now playing movie trailer"
         className="w-[100%] aspect-video pointer-events-none  "

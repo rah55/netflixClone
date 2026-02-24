@@ -3,7 +3,7 @@ import React from "react";
 function PlanCard({ data  }) {
   
   return (
-    <div  >
+    
       
       <div  className="grid grid-cols-1  mt-2 p-2 md:grid-cols-2 gap-3 xl:grid-cols-4  ">
         {data.map((card)=>(
@@ -13,7 +13,7 @@ function PlanCard({ data  }) {
             <div className="font-semibold mt-5 text-gray-300">
                 <ul>
                     {
-                        card?.pros.map((pro)=><li>✓ {pro}</li>)
+                        card?.pros.map((pro,index)=><li key={index}>✓ {pro}</li>)
                     }
                 </ul>
             </div>
@@ -24,7 +24,7 @@ function PlanCard({ data  }) {
         ))}
         
       </div>
-    </div>
+    
   );
 }
 

@@ -33,9 +33,12 @@ function Plans() {
     }
   ];
 
-  return <div className="px-4 bg-black">
+  return <div className="px-4 bg-black ">
     <h1 className="text-xl md:text-3xl font-bold text-white p-4">A plan to suit your needs</h1>
+    
+
      <PlanCard data={cardData} />
+    
   </div>;
 }
 

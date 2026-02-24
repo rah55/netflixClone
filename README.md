@@ -30,5 +30,10 @@
 - create all movie details page 
     when click on the movie ,all details of the movie will come
     make it responsive too
+    create subscription plan card full responsive
     
     
+- show different movie list on the all movie details page
+- each movie card take user on the information of the movie card where the user clicked.
+-add footer at the bottom of the page which is fully responsive. 
+- make whole app full responsive .

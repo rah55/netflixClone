@@ -66,7 +66,7 @@ const Header = () => {
   }, [location.pathname]);
 
   return (
-    <div className="flex flex-col  md:flex-row justify-between absolute px-5 py-2 bg-gradient-to-b from-black z-10 w-full">
+    <div className="flex flex-col   md:flex-row justify-between absolute px-5 py-2 bg-gradient-to-b from-black z-10 w-full">
       <img
         className=" w-44 mx-auto md:mx-0"
         src={NETFLIX_LOGO_URL}
