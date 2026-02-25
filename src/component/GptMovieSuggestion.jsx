@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import MovieCard from "./MovieCard";
-import { Link } from "react-router-dom";
+
 
 function GptMovieSuggestion() {
   const moviesList = useSelector((store) => store?.movies?.allMovies);
