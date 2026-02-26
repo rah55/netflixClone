@@ -7,7 +7,6 @@ import Footer from "./Footer";
 function GptSearch() {
   return (
     <div className="relative min-h-screen flex flex-col overflow-x-hidden">
-
       {/* Background Image */}
       <div className="fixed inset-0 -z-10">
         <img
@@ -27,7 +26,6 @@ function GptSearch() {
 
       {/* Footer */}
       <Footer />
-
     </div>
   );
 }
